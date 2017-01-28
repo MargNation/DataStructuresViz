@@ -28,6 +28,12 @@ function removeAllButtons(){
 	document.getElementById("isFullText").innerHTML = '';
 	document.getElementById("isEmpty").innerHTML = '';
 	document.getElementById("isEmptyText").innerHTML = '';
+	document.getElementById("push").innerHTML = '';
+	document.getElementById("pushText").innerHTML = '';
+	document.getElementById("pop").innerHTML = '';
+	document.getElementById("popText").innerHTML = '';
+	document.getElementById("showTop").innerHTML = '';
+	document.getElementById("showTopText").innerHTML = '';
 }
 
 // Simple random number generator
@@ -87,10 +93,12 @@ function createQueue() {
 
 function drawQueue() {
 	var drawingCoords = [(canvasWidth / 4.5), 75, [(canvasWidth / 4.5) + 35, 135]];
-	ctx.clearRect(0, 7, canvas.width, drawingCoords[1] + 175);
+	ctx.clearRect(0, 7, canvas.width, canvas.height);
 	ctx.font="22px Comfortaa";
 	ctx.fillStyle = "black";
 	ctx.fillText("Queue:", (canvasWidth / 4.5) - 225, 250);
+	ctx.fillStyle = "white";
+	ctx.fillText("MAX_SIZE = 8", canvasWidth - 200, 135);
 	for (var i = 0; i < numbers.length; i++) {
 		ctx.strokeStyle = "#000000";
 		ctx.lineWidth = 7;
@@ -118,7 +126,7 @@ function enqueue() {
 	document.getElementById("enqueueText").style.color = "white";
 	document.getElementById("enqueueText").style.fontWeight = "bold";
 	document.getElementById("enqueueText").style.textShadow = "5px 8px 36px #000000";
-	document.getElementById("enqueueText").innerHTML = "This adds an element to the structure, at the end, as long as there's room.";
+	document.getElementById("enqueueText").innerHTML = "This adds an element to the structure at the end, as long as there's room.";
 }
 
 function dequeue() {
@@ -166,7 +174,7 @@ function isEmpty() {
 	document.getElementById("isEmptyText").style.color = "white";
 	document.getElementById("isEmptyText").style.fontWeight = "bold";
 	document.getElementById("isEmptyText").style.textShadow = "5px 8px 36px #000000";
-	document.getElementById("isEmptyText").innerHTML = "This adds an element to the structure, at the end.";
+	document.getElementById("isEmptyText").innerHTML = "Returns a boolean; true if the queue has no elements.";
 }
 
 function createStack() {
@@ -182,16 +190,19 @@ function createStack() {
 	document.getElementById("pop").innerHTML = 
 	'<button type="submit" class="button" style="z-index: 2; position: relative" onclick="pop()">Pop()</button>';
 	
-	createButton("top", "700px", "200px");
-	document.getElementById("top").innerHTML = 
-	'<button type="submit" class="button" style="z-index: 2; position: relative" onclick="top()">Top()</button>';
+	createButton("showTop", "700px", "200px");
+	document.getElementById("showTop").innerHTML = 
+	'<button type="submit" class="button" style="z-index: 2; position: relative" onclick="showTop()">Top()</button>';
 }
 
 function drawStack() {
-	var drawingCoords = [((canvasWidth / 2) - 100), 75, [(canvasWidth / 2) - 75, 125]];
+	ctx.clearRect(0, 7, canvas.width, canvas.height);
+	var drawingCoords = [(canvasWidth / 2), 75, [(canvasWidth / 2) + 25, 125]];
 	ctx.font="22px Comfortaa";
 	ctx.fillStyle = "black";
 	ctx.fillText("Stack:", (canvasWidth / 4.5) - 225, 250);
+	ctx.fillStyle = "white";
+	ctx.fillText("MAX_SIZE = 8", (canvasWidth / 2) + 100, 125);
 	for (var i = 0; i < numbers.length; i++) {
 		ctx.strokeStyle = "#000000";
 		ctx.lineWidth = 7;
@@ -209,8 +220,17 @@ function drawStack() {
 }
 
 function push() {
-	numbers.push(Math.floor(random(1, 100)));
-	flags.push(true);
+	if (numbers.length < 8) {
+		numbers.push(Math.floor(random(1, 100)));
+		flags.push(true);
+	}
+	drawStack();
+	createButton("pushText", "545px", "200px");
+	document.getElementById("pushText").style.fontSize = "18px";
+	document.getElementById("pushText").style.color = "white";
+	document.getElementById("pushText").style.fontWeight = "bold";
+	document.getElementById("pushText").style.textShadow = "5px 8px 36px #000000";
+	document.getElementById("pushText").innerHTML = "This function adds a number to the stack, <br>if there is room. (MAX_SIZE = 8.)";
 }
 
 function pop() {
@@ -225,17 +245,16 @@ function pop() {
 	document.getElementById("popText").innerHTML = "This removes the last element of the stack";
 }
 
-// function top() {
-// 	ctx.clearRect((canvasWidth / 4.5) - 200, 100, (canvasWidth / 4.5) - 100, 100);
-// 	createButton("topText", "725px", "325px");
-// 	ctx.fillStyle = "white";
-// 	ctx.fillText("top() == " + numbers[numbers.length - 1], (canvasWidth / 4.5) - 200, 135);
-// 	document.getElementById("topText").style.fontSize = "18px";
-// 	document.getElementById("topText").style.color = "white";
-// 	document.getElementById("topText").style.fontWeight = "bold";
-// 	document.getElementById("topText").style.textShadow = "5px 8px 36px #000000";
-// 	document.getElementById("topText").innerHTML = "This returns the top element of the stack, the last one added.";
-// }
+function showTop() {
+	createButton("showTopText", "745px", "200px");
+	ctx.fillStyle = "white";
+	ctx.fillText("top() == " + numbers[numbers.length - 1], (canvasWidth / 2) - 150, 125);
+	document.getElementById("showTopText").style.fontSize = "18px";
+	document.getElementById("showTopText").style.color = "white";
+	document.getElementById("showTopText").style.fontWeight = "bold";
+	document.getElementById("showTopText").style.textShadow = "5px 8px 36px #000000";
+	document.getElementById("showTopText").innerHTML = "This returns the top element of the stack, <br>without removing it.";
+}
 
 function createLinkedList() {
 	removeAllButtons();
