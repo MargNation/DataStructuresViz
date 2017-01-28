@@ -2,6 +2,8 @@ This program will create various data structures from sets of numbers and will a
 step through each structure and learn how each is created. Hopefully CS students (and others!) 
 will benefit from this program.
 
+View it [here](https://margnation.github.io/DataStructuresViz/).
+
 
 
 ####Here are the goals and functionalities I'd like to achieve with this program:<br>
@@ -32,11 +34,11 @@ will benefit from this program.
 
 3. <b>Stack</b><br>
 
-  * push() :black_large_square:<br>
+  * push() :ballot_box_with_check:<br>
 
-  * pop() :black_large_square:<br>
+  * pop() :ballot_box_with_check:<br>
 
-  * top() :black_large_square:<br>
+  * top() :ballot_box_with_check:<br>
 
 4. <b>Linked List</b><br>
 
