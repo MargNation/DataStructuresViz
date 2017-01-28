@@ -1,6 +1,6 @@
 ####This program will create various data structures from sets of numbers and will allow the user to step through each structure and learn how each is created. Hopefully CS students (and others!) will benefit from this program.
 
-####View it [here](https://margnation.github.io/DataStructuresViz/).
+####View it [here](https://margnation.github.io/DataStructuresViz/). (Only queue and stack are working at this time.)
 
 ----
 
