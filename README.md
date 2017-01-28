@@ -2,7 +2,7 @@
 
 ####View it [here](https://margnation.github.io/DataStructuresViz/).
 
-
+----
 
 #####Here are the goals and functionalities I'd like to achieve with this program:<br>
 
